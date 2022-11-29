@@ -6,8 +6,9 @@ import './App.css'
 function App() {
 //API Data
 const [data, setData] = useState([])
+const occupations = []
 //Form Data
-let [postData, setPostData] = useState({ name: '', email: '', password: '', occupation: '', state: ''}) 
+
 
 useEffect(() => {
   const fetchData = async () => {
@@ -16,17 +17,21 @@ useEffect(() => {
     setData(resData)
   }
   fetchData()
+
 }
 , [])
 
 
-
 //Rendering after API call
 const renderForm = () => {
-  if(data){
-    console.log(data.occupations)
+  if(data.occupations && data.states){
+    console.log(data.occupations[0])
     return(
       <Form data={data}></Form>
+    )
+  }else{
+    return(
+      <h1>loading!</h1>
     )
   }
 }
