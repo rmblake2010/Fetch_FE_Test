@@ -1,7 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
 export default makeStyles(() => ({
-
   paper: {
     display: 'flex',
     justifyContent: 'center',
@@ -11,15 +10,13 @@ export default makeStyles(() => ({
     backgroundColor: '#C5B498',
     display: 'flex',
     flexDirection: 'column',
-    width: '100%',
+    minWidth: '120',
     justifyContent: 'center',
     margin: '4rem',
   },
-  textField: {
-    marginBottom: '2%'
+  menuPaper: {
+    maxHeight: 100
+ },
 
-  },
-  buttonSubmit: {
-    marginBottom: 10,
-  },
+
 }));

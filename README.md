@@ -34,3 +34,13 @@ The goal of this application is to create a form that asks the following
 ## MUI
 - Using Material UI for styling
 - An easy to use framework that is great for prototyping ideas or styling entire sites with!
+
+
+### Loading
+- Struggled a bit with loading, had a loading tag. However, loading specific data from API was returning undefined.  Fixed by testing values of specific data points before loading form. 
+
+### Styling
+- Relyed on MUI for styling, although still barebones.  Styling is where I need to learn and grow a lot more!
+
+### Modal
+- Added modal to submit button for user acknowledgement that the sign up was complete. 

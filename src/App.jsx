@@ -25,7 +25,6 @@ useEffect(() => {
 //Rendering after API call
 const renderForm = () => {
   if(data.occupations && data.states){
-    console.log(data.occupations[0])
     return(
       <Form data={data}></Form>
     )
