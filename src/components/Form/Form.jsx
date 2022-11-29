@@ -1,8 +1,11 @@
 import { useState } from 'react'
-import { Button, Paper, TextField, Typography, Select, InputLabel, MenuItem, Menu, FormControl } from '@mui/material'
+import { Button, Paper, TextField, Typography, Select, InputLabel, MenuItem } from '@mui/material'
+import axios from 'axios'
+import useStyles from './styles'
 
 
 const Form = ({data}) => {
+const classes = useStyles()
 
 let [postData, setPostData] = useState({ name: '', email: '', password: '', occupation: '', state: ''}) 
 
@@ -10,18 +13,31 @@ let [postData, setPostData] = useState({ name: '', email: '', password: '', occu
 const handleSubmit = async (e, submitData) => {
   e.preventDefault()
   console.log(submitData)
+  try {
+    await axios({
+      method:'post',
+      url: "https://frontend-take-home.fetchrewards.com/form",
+      data: submitData
+    })
+    .then((response) => {
+      console.log(response.status)
+    })
+  }catch(err){
+    console.log(err)
+  }
+
 }
 
 
 return(
-    <Paper>
-    <FormControl autoComplete='off' >
-    <form  onSubmit={(e) => handleSubmit(e, postData)} action='/' method='POST'>
+    <Paper className={` ${classes.paper}`}>
+    <form  className={`${classes.root} ${classes.form}`}   onSubmit={(e) => handleSubmit(e, postData)} action='/' method='POST'>
       <Typography variant='h6'>Sign up</Typography>
       <Typography variant='h7'>Please fill out all boxes</Typography>
-      <TextField required name='name' variant='outlined' label='Full Name' onChange={(e) => setPostData({...postData, name: e.target.value})}  fullWidth/>
-      <TextField required name='email' variant='outlined' label='Email' onChange={(e) => setPostData({...postData, email: e.target.value})} fullWidth/>
-      <TextField required name='password' variant='outlined' label='Password' onChange={(e) => setPostData({...postData, password: e.target.value})} fullWidth/>     
+      <TextField  required name='name' variant='outlined' label='Full Name' onChange={(e) => setPostData({...postData, name: e.target.value})}  fullWidth/>
+      <TextField className={`${classes.textField}`} required name='email' variant='outlined' label='Email' onChange={(e) => setPostData({...postData, email: e.target.value})} fullWidth/>
+      <TextField className={`${classes.textField}`} required name='password' variant='outlined' label='Password' onChange={(e) => setPostData({...postData, password: e.target.value})} fullWidth/>     
+      <InputLabel>Occupation</InputLabel>
       <Select
           required
           defaultValue={""}   
@@ -34,7 +50,7 @@ return(
             )
           })}
         </Select>
-
+      <InputLabel>State</InputLabel>
       <Select
         required
         defaultValue={""}
@@ -49,7 +65,6 @@ return(
       </Select>
         <Button type="submit" color="primary" variant='contained'>Submit</Button>
     </form>
-    </FormControl>
   </Paper>
 )
 
